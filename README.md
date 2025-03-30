@@ -1,1 +1,1 @@
-"# lite-xl-config" 
+# lite-xl-config

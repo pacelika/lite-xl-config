@@ -1,3 +1,5 @@
 return {
-  ["config"] = { ["theme"] = "betelgeuse" }
+  ["config"] = {
+    ["theme"] = "onedark"
+  }
 }
