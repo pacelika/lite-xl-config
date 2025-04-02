@@ -6,7 +6,8 @@ local style = require "core.style"
 config.ignore_files = {
   -- folders
   "^%.svn/",        "^%.git/",   "^%.hg/",        "^CVS/", "^%.Trash/", "^%.Trash%-.*/",
-  "^node_modules/", "^%.cache/", "^__pycache__/",
+  "^node_modules/", "^%.cache/", "^__pycache__/", "^%.zig%-cache$",
+
   -- files
   "%.pyc$",         "%.pyo$",       "%.exe$",        "%.dll$",   "%.obj$", "%.o$",
   "%.a$",           "%.lib$",       "%.so$",         "%.dylib$", "%.ncb$", "%.sdf$",
@@ -29,7 +30,7 @@ lsp.add_server({
     language = "zig",
     file_patterns = {"%.zig$","%.zig.zon$"},
     command = {"zls"},
-    requests_per_second = 50,
+    requests_per_second = 16,
     verbose = false,
-    incremental_changes = false,
+    incremental_changes = true,
 })
