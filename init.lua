@@ -1,7 +1,11 @@
 local core = require "core"
+local doc = require "core.doc"
 local keymap = require "core.keymap"
 local config = require "core.config"
 local style = require "core.style"
+
+local lspconfig = require "plugins.lsp.config"
+local lsp = require("plugins.lsp")
 
 config.ignore_files = {
   -- folders
@@ -20,8 +24,12 @@ config.tab_type = "hard"
 config.indent_size = 4
 config.plugins.scale.default_scale = 1.69
 
-local lspconfig = require "plugins.lsp.config"
-local lsp = require("plugins.lsp")
+keymap.unbind("ctrl+a")
+keymap.add({
+    ["ctrl+shift+a"] = "doc:select-all",
+    ["ctrl+e"] = "doc:move-to-end-of-line",
+    ["ctrl+a"] = "doc:move-to-start-of-line"
+})
 
 lspconfig.clangd.setup()
 
