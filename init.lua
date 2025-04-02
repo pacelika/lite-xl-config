@@ -17,11 +17,19 @@ config.ignore_files = {
 config.fps = 120
 config.tab_type = "hard"
 config.indent_size = 4
-
--- config.plugins.scale.mode = "ui"
 config.plugins.scale.default_scale = 1.69
 
 local lspconfig = require "plugins.lsp.config"
+local lsp = require("plugins.lsp")
+
 lspconfig.clangd.setup()
--- lspconfig.rust_analyzer.setup()
-lspconfig.zls.setup()
+
+lsp.add_server({
+    name = "zig-zls",
+    language = "zig",
+    file_patterns = {"%.zig$","%.zig.zon$"},
+    command = {"zls"},
+    requests_per_second = 50,
+    verbose = false,
+    incremental_changes = false,
+})

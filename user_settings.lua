@@ -1,5 +1,5 @@
 return {
   ["config"] = {
-    ["theme"] = "onedark"
+    ["theme"] = "default"
   }
 }
