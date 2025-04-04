@@ -5,7 +5,6 @@ local config = require "core.config"
 local style = require "core.style"
 
 local lspconfig = require "plugins.lsp.config"
-local lsp = require("plugins.lsp")
 
 config.ignore_files = {
   -- folders
@@ -20,11 +19,13 @@ config.ignore_files = {
 }
 
 config.fps = 120
-config.tab_type = "hard"
-config.indent_size = 4
 config.plugins.scale.default_scale = 1.69
 
+config.tab_type = "hard"
+config.indent_size = 4
+
 keymap.unbind("ctrl+a")
+
 keymap.add({
     ["ctrl+shift+a"] = "doc:select-all",
     ["ctrl+e"] = "doc:move-to-end-of-line",
@@ -32,13 +33,4 @@ keymap.add({
 })
 
 lspconfig.clangd.setup()
-
-lsp.add_server({
-    name = "zig-zls",
-    language = "zig",
-    file_patterns = {"%.zig$","%.zig.zon$"},
-    command = {"zls"},
-    requests_per_second = 16,
-    verbose = false,
-    incremental_changes = true,
-})
+lspconfig.zls.setup()
