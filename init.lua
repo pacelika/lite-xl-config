@@ -4,6 +4,7 @@ local keymap = require "core.keymap"
 local config = require "core.config"
 local style = require "core.style"
 
+local lsp = require "plugins.lsp"
 local lspconfig = require "plugins.lsp.config"
 
 config.ignore_files = {
@@ -34,3 +35,13 @@ keymap.add({
 
 lspconfig.clangd.setup()
 lspconfig.zls.setup()
+
+lsp.add_server({
+    name = "lua",
+    language = "lua",
+    file_patterns = {"%.lua$"},
+    command = {"lua-language-server"},
+    requests_per_second = 16,
+    verbose = false,
+    incremental_changes = false,
+})
